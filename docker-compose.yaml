@@ -1,0 +1,25 @@
+version: "3"
+services:
+  server1:
+    container_name: server1
+    hostname: server1
+    image: tl-vault:latest
+#    entrypoint: /usr/bin/sleep
+#    command: "9999999"
+#     network_mode: "host"
+    volumes:
+    - ./configs/server1.hcl:/etc/vault.d/server.hcl:ro
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./gpg:/opt/gpg:rw
+  server2:
+    container_name: server2
+    hostname: server2
+    image: tl-vault:latest
+#    entrypoint: /usr/bin/sleep
+#    command: "9999999"
+    ports:
+    - 8200:8200
+    # network_mode: "host"
+    volumes:
+    - ./configs/server2.hcl:/etc/vault.d/server.hcl:ro
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
