@@ -11,6 +11,10 @@ services:
     - ./configs/server1.hcl:/etc/vault.d/server.hcl:ro
     - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
     - ./gpg:/opt/gpg:rw
+    - ./raft/server1:/raft:rw
+    - ./tls/vault1-key.pem:/tls/key.pem:ro
+    - ./tls/vault1-cert.pem:/tls/cert.pem:ro
+    - ./tls/vault-ca.pem:/tls/ca.pem:ro
   server2:
     container_name: server2
     hostname: server2
@@ -23,3 +27,7 @@ services:
     volumes:
     - ./configs/server2.hcl:/etc/vault.d/server.hcl:ro
     - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./raft/server2:/raft:rw
+    - ./tls/vault2-key.pem:/tls/key.pem:ro
+    - ./tls/vault2-cert.pem:/tls/cert.pem:ro
+    - ./tls/vault-ca.pem:/tls/ca.pem:ro
