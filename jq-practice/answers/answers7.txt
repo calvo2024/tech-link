@@ -1,0 +1,21 @@
+cat exercise7.json | jq '.. | .teams? | .. | .country?'
+
+"Spain"
+"England"
+"Germany"
+
+
+cat exercise7.json | jq '.. | .clasico_teams? | .. | .name?'
+
+"Real Madrid"
+"Barcelona"
+
+
+cat exercise7.json | jq '.. | .winners? | .. | select(.team? == "Real Madrid") | .team' | wc -l
+Expected Output: 15
+
+cat exercise7.json | jq '.. | .winners? | .. | select(.team? == "Barcelona") | .team' | wc -l
+Expected Output: 5
+
+cat exercise7.json | jq '.. | .winners? | .. | select(.team? == "Atletico de Madrid") | .team' | wc -l
+Expected Output: 0

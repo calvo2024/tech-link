@@ -1,0 +1,119 @@
+cat exercise6.json | jq '.. | .teams?'
+Expected output:
+[
+  {
+    "name": "Real Madrid",
+    "country": "Spain"
+  },
+  {
+    "name": "Manchester United",
+    "country": "England"
+  },
+  {
+    "name": "Bayern Munich",
+    "country": "Germany"
+  }
+]
+
+
+cat exercise6.json | jq '.. | .clasico_teams?'
+Expected output:
+[
+  {
+    "name": "Real Madrid",
+    "stadium": "Santiago Bernabéu"
+  },
+  {
+    "name": "Barcelona",
+    "stadium": "Camp Nou"
+  }
+]
+
+
+cat exercise6.json | jq '.. | .winners?'
+[
+  {
+    "year": 2024,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2022,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2018,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2017,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2016,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2014,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2002,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2000,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1998,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1966,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1960,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1959,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1958,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1957,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 1956,
+    "team": "Real Madrid"
+  },
+  {
+    "year": 2015,
+    "team": "Barcelona"
+  },
+  {
+    "year": 2011,
+    "team": "Barcelona"
+  },
+  {
+    "year": 2009,
+    "team": "Barcelona"
+  },
+  {
+    "year": 2006,
+    "team": "Barcelona"
+  },
+  {
+    "year": 1992,
+    "team": "Barcelona"
+  },
+  {
+    "year": "never",
+    "team": "Atletico de Madrid"
+  }
+]

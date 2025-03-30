@@ -1,0 +1,48 @@
+{
+    "level": 4,
+    "description": "This is the fourth level of the jq practice exercises. It introduces combining filters using the select() function.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Filter the array to include only objects where the 'age' field is greater than 20 and return only the 'name' field.",
+            "example": {
+                "input": {
+                    "people": [
+                        { "name": "Alice", "age": 18 },
+                        { "name": "Bob", "age": 35 },
+                        { "name": "Charlie", "age": 40 }
+                    ]
+                },
+                "expected_output": "[\"Bob\",\"Charlie\"]"
+            }
+        },
+        {
+            "id": 2,
+            "task": "Filter the array to include only objects where the 'status' field is 'active' and return only the 'username' field.",
+            "example": {
+                "input": {
+                    "users": [
+                        { "username": "user1", "status": "inactive" },
+                        { "username": "user2", "status": "active" },
+                        { "username": "user3", "status": "active" }
+                    ]
+                },
+                "expected_output": "[\"user2\",\"user3\"]"
+            }
+        },
+        {
+            "id": 3,
+            "task": "Filter the array to include only objects where the 'score' field is greater than or equal to 80 and return only the 'name' field.",
+            "example": {
+                "input": {
+                    "students": [
+                        { "name": "Eve", "score": 75 },
+                        { "name": "Frank", "score": 85 },
+                        { "name": "Grace", "score": 90 }
+                    ]
+                },
+                "expected_output": "[\"Frank\",\"Grace\"]"
+            }
+        }
+    ]
+}

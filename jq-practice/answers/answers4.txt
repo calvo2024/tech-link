@@ -1,0 +1,14 @@
+cat exercise4.json | jq '.tasks[0].example.input.people.[] | select(.age > 20) | .name'
+Expected output:
+"Bob"
+"Charlie"
+
+cat exercise4.json | jq '.tasks[1].example.input.users.[] | select(.status == "active") | .username'
+Expected output:
+"user2"
+"user3"
+
+
+cat exercise4.json | jq '.tasks[2].example.input.students.[] | select(.score >= 80) | .name'
+"Frank"
+"Grace"

@@ -1,0 +1,67 @@
+{
+    "level": 7,
+    "description": "Level 7 of the jq practice exercises. It introduces the use of the .. operator to recursively descend through a tree of an object. You can also chain the .. operator to recursively find more specific fields within the structure.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Use the .. operator to recursively find all values inside teams and then all the contry fields.",
+            "example": {
+                "input": {
+                    "teams": [
+                        { "name": "Real Madrid", "country": "Spain" },
+                        { "name": "Manchester United", "country": "England" },
+                        { "name": "Bayern Munich", "country": "Germany" }
+                    ]
+                }
+            }
+        },
+        {
+            "id": 2,
+            "task": "Use the .. operator to recursively find all values inside clasico_teams and then all the name fileds.",
+            "example": {
+                "input": {
+                    "league": {
+                        "name": "La Liga",
+                        "clasico_teams": [
+                            { "name": "Real Madrid", "stadium": "Santiago Bernabéu" },
+                            { "name": "Barcelona", "stadium": "Camp Nou" }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "id": 3,
+            "task": "Use the .. operator to recursively find all values inside winners, then chain it with a select to an specific team and then use wc -l to count the Champions League throphies.",
+            "example": {
+                "input": {
+                    "tournament": {
+                        "name": "Champions League",
+                        "winners": [
+                            { "year": 2024, "team": "Real Madrid" },
+                            { "year": 2022, "team": "Real Madrid" },
+                            { "year": 2018, "team": "Real Madrid" },
+                            { "year": 2017, "team": "Real Madrid" },
+                            { "year": 2016, "team": "Real Madrid" },
+                            { "year": 2014, "team": "Real Madrid" },
+                            { "year": 2002, "team": "Real Madrid" },
+                            { "year": 2000, "team": "Real Madrid" },
+                            { "year": 1998, "team": "Real Madrid" },
+                            { "year": 1966, "team": "Real Madrid" },
+                            { "year": 1960, "team": "Real Madrid" },
+                            { "year": 1959, "team": "Real Madrid" },
+                            { "year": 1958, "team": "Real Madrid" },
+                            { "year": 1957, "team": "Real Madrid" },
+                            { "year": 1956, "team": "Real Madrid" },
+                            { "year": 2015, "team": "Barcelona" },
+                            { "year": 2011, "team": "Barcelona" },
+                            { "year": 2009, "team": "Barcelona" },
+                            { "year": 2006, "team": "Barcelona" },
+                            { "year": 1992, "team": "Barcelona" }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}

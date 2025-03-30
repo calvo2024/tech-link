@@ -1,0 +1,38 @@
+{
+    "level": 2,
+    "description": "This is the second level of the jq practice exercises. It introduces nested JSON objects.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Extract the value of the 'city' field from the nested JSON object.",
+            "example": {
+                "input": {
+                    "person": {
+                        "name": "Charlie",
+                        "address": {
+                            "city": "New York",
+                            "zip": "10001"
+                        }
+                    }
+                },
+                "expected_output": "\"New York\""
+            }
+        },
+        {
+            "id": 2,
+            "task": "Extract the value of the 'zip' field from the nested JSON object.",
+            "example": {
+                "input": {
+                    "person": {
+                        "name": "Diana",
+                        "address": {
+                            "city": "Los Angeles",
+                            "zip": "90001"
+                        }
+                    }
+                },
+                "expected_output": "\"90001\""
+            }
+        }
+    ]
+}

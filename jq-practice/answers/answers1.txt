@@ -1,0 +1,5 @@
+cat exercise1.json | jq '.tasks[0].example.input.name'
+Expected output: "Alice"
+
+cat exercise1.json | jq '.tasks[1].example.input.age'
+Expected output: 30

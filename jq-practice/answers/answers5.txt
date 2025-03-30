@@ -1,0 +1,3 @@
+cat exercise5.json | jq -r '.tasks[0].example.input.books[0].title'
+Expected output:
+The Catcher in the Rye

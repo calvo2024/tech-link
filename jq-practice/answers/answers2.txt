@@ -1,0 +1,5 @@
+cat exercise2.json | jq '.tasks[0].example.input.person.address.city'
+Expected output: "New York"
+
+cat exercise2.json | jq '.tasks[1].example.input.person.address.zip'
+Expected output: "90001"

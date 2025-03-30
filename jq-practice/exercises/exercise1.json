@@ -1,0 +1,28 @@
+{
+    "level": 1,
+    "description": "This is the first level of the jq practice exercises.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Extract the value of the 'name' field from the JSON object.",
+            "example": {
+                "input": {
+                    "name": "Alice",
+                    "age": 25
+                },
+                "expected_output": "\"Alice\""
+            }
+        },
+        {
+            "id": 2,
+            "task": "Extract the value of the 'age' field from the JSON object.",
+            "example": {
+                "input": {
+                    "name": "Bob",
+                    "age": 30
+                },
+                "expected_output": "30"
+            }
+        }
+    ]
+}

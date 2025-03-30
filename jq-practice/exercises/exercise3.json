@@ -1,0 +1,48 @@
+{
+    "level": 3,
+    "description": "This is the third level of the jq practice exercises. It introduces filtering arrays using the select() function.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Filter the array to include only objects where the 'age' field is greater than 30.",
+            "example": {
+                "input": {
+                    "people": [
+                        { "name": "Alice", "age": 25 },
+                        { "name": "Bob", "age": 35 },
+                        { "name": "Charlie", "age": 40 }
+                    ]
+                },
+                "expected_output": "[{\"name\":\"Bob\",\"age\":35},{\"name\":\"Charlie\",\"age\":40}]"
+            }
+        },
+        {
+            "id": 2,
+            "task": "Filter the array to include only objects where the 'status' field is 'active'.",
+            "example": {
+                "input": {
+                    "users": [
+                        { "username": "user1", "status": "inactive" },
+                        { "username": "user2", "status": "active" },
+                        { "username": "user3", "status": "active" }
+                    ]
+                },
+                "expected_output": "[{\"username\":\"user2\",\"status\":\"active\"},{\"username\":\"user3\",\"status\":\"active\"}]"
+            }
+        },
+        {
+            "id": 3,
+            "task": "Filter the array to include only objects where the 'score' field is greater than or equal to 80.",
+            "example": {
+                "input": {
+                    "students": [
+                        { "name": "Eve", "score": 75 },
+                        { "name": "Frank", "score": 85 },
+                        { "name": "Grace", "score": 90 }
+                    ]
+                },
+                "expected_output": "[{\"name\":\"Frank\",\"score\":85},{\"name\":\"Grace\",\"score\":90}]"
+            }
+        }
+    ]
+}

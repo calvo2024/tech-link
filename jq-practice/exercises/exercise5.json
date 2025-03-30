@@ -1,0 +1,20 @@
+{
+    "level": 5,
+    "description": "This is the fifth level of the jq practice exercises. It introduces the use of the -r flag to produce raw output.",
+    "tasks": [
+        {
+            "id": 1,
+            "task": "Use the -r flag to output the 'title' field of the first object in the array as raw text.",
+            "example": {
+                "input": {
+                    "books": [
+                        { "title": "The Catcher in the Rye", "author": "J.D. Salinger" },
+                        { "title": "To Kill a Mockingbird", "author": "Harper Lee" }
+                    ]
+                },
+                "expected_output": "The Catcher in the Rye"
+            },
+            "note": "Note the use of the -r flag. It makes the output raw, without quote marks around it."
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+cat exercise3.json | jq '.tasks[0].example.input.people.[] | select(.age > 30)'
+Expected output:
+{
+  "name": "Bob",
+  "age": 35
+}
+{
+  "name": "Charlie",
+  "age": 40
+}
+
+
+cat exercise3.json | jq '.tasks[1].example.input.users.[] | select(.status == "active")'
+Expected output:
+{
+  "username": "user2",
+  "status": "active"
+}
+{
+  "username": "user3",
+  "status": "active"
+}
+
+
+cat exercise3.json | jq '.tasks[2].example.input.students.[] | select(.score >= 80)'
+Expected output:
+{
+  "name": "Frank",
+  "score": 85
+}
+{
+  "name": "Grace",
+  "score": 90
+}
