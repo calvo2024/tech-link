@@ -1,0 +1,4 @@
+#Ignore raft data
+/raft
+# Ignore certificates
+/tls/vault*

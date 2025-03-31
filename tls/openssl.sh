@@ -15,10 +15,4 @@ f() {
 
 f 1 "subjectAltName = DNS:localhost,DNS:server1,DNS:localhost.localdomain,IP:10.0.1.5"
 f 2 "subjectAltName = DNS:localhost,DNS:server2,DNS:localhost.localdomain,IP:10.0.1.7"
-#f 3 "subjectAltName = DNS:localhost,DNS:server3,localhost.localdomain,IP:10.0.1.6"
-
-#To Create te certicate for server 3:
-# 1. Uncomment line 18
-# 2. Comment lines 1-4 (generate CA)
-# 3. Comment lines 16,17 (generate certificates for servers 1 and 2)
-# 4. Execute the command ->   sh openssl.sh
+f 3 "subjectAltName = DNS:localhost,DNS:server3,DNS:localhost.localdomain,IP:10.0.1.6"

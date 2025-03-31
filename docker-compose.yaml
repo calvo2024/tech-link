@@ -31,3 +31,20 @@ services:
     - ./tls/vault2-key.pem:/tls/key.pem:ro
     - ./tls/vault2-cert.pem:/tls/cert.pem:ro
     - ./tls/vault-ca.pem:/tls/ca.pem:ro
+  server3:
+    container_name: server3
+    hostname: server3
+    image: tl-vault:latest
+#    entrypoint: /usr/bin/sleep
+#    command: "9999999"
+    ports:
+    - 8300:8200
+#     network_mode: "host"
+    volumes:
+    - ./configs/server3.hcl:/etc/vault.d/server.hcl:ro
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./gpg:/opt/gpg:rw
+    - ./raft/server3:/raft:rw
+    - ./tls/vault3-key.pem:/tls/key.pem:ro
+    - ./tls/vault3-cert.pem:/tls/cert.pem:ro
+    - ./tls/vault-ca.pem:/tls/ca.pem:ro
