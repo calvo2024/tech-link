@@ -21,9 +21,19 @@ sh openssl.sh
 docker compose up -d
 ```
 5. Start your own adventure with Vault :)
+6. Log in to each server by executing the command
+```
+docker exec -it server{1/2} /bin/sh
+```
+7. To start interacting with the cluster perform the following variable export
+```
+export VAULT_ADDR=https://server{1/2}:8200
+export VAULT_CACERT=/tls/ca.pem
+```
 
-6. To join server1 from server2 using the certificates you can use this command:
+8. To join server1 from server2 using the certificates you can use this command:
 ```
 vault operator raft join --leader-ca-cert=@/tls/ca.pem --leader-client-cert=@/tls/cert.pem --leader-client-key=@/tls/key.pem https://server1:8200
 ```
 
+9. After joining server1, you have to unseal server2 using the unseal keys from the server1 and you would have configured a HA cluster with two nodes
