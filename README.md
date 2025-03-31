@@ -12,17 +12,17 @@ The objetive of this branch is to initiliaze Vault, unseal it, and join node1 fr
 ```
 make
 ```
-3. On the root directory, deploy the Docker container
-```
-docker compose up -d
-```
-5. Create your TLS certificates execute the next command at the path ->  /tech-link/tls:
+3. Create your TLS certificates execute the next command at the path ->  /tech-link/tls:
 ```
 sh openssl.sh
 ```
-6. Start your own adventure with Vault :)
+4. On the root directory, deploy the Docker container
+```
+docker compose up -d
+```
+5. Start your own adventure with Vault :)
 
-7. To join server1 from server2 using the certificates you can use this command:
+6. To join server1 from server2 using the certificates you can use this command:
 ```
 vault operator raft join --leader-ca-cert=@/tls/ca.pem --leader-client-cert=@/tls/cert.pem --leader-client-key=@/tls/key.pem https://server1:8200
 ```
