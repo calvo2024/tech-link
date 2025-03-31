@@ -8,8 +8,8 @@ Steps to reproduce:
 
 2. After the make has finished, we should deploy the initial configuration by executing:
    
-   `docker compose up` if you are using mac or `docker-compose up`if you are not
+   `docker compose up -d` if you are using mac or `docker-compose -up`if you are not
 
 3. Once you have executed this command, a two node server will be created called *tech-link*. You should see something similar to this:
 
-![containers created](image.png)
+![containers created](images/image.png)
