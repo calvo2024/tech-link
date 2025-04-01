@@ -57,13 +57,13 @@ vault write database/roles/testcreds \
     default_ttl="1h" \
     max_ttl="24h"
 ```
-12.   Configure a policy (from the UI or from CLI) to later assign to the approle to have rights to request dynamic credentials
+1.   Configure a policy (from the UI or from CLI) to later assign to the approle to have rights to request dynamic credentials
 ```
 path "database/creds/testcreds" {
   capabilities = ["read"]
 }
 ```
-13.     Configure approle role with the policy previously attache (enable approle if not done before **vault auth enable approle**)
+1.     Configure approle role with the policy previously attache (enable approle if not done before **vault auth enable approle**)
 
 ```
 vault write auth/approle/role/test \
