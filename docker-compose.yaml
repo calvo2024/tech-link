@@ -5,7 +5,9 @@ services:
     hostname: server1
     image: tl-vault:latest
 #    entrypoint: /usr/bin/sleep
-#    command: "9999999"
+#    command: "9999999"    
+    ports:
+      - "8200:8200"
 #     network_mode: "host"
     volumes:
     - ./configs/server1.hcl:/etc/vault.d/server.hcl:ro
@@ -15,36 +17,14 @@ services:
     - ./tls/vault1-key.pem:/tls/key.pem:ro
     - ./tls/vault1-cert.pem:/tls/cert.pem:ro
     - ./tls/vault-ca.pem:/tls/ca.pem:ro
-  server2:
-    container_name: server2
-    hostname: server2
-    image: tl-vault:latest
-#    entrypoint: /usr/bin/sleep
-#    command: "9999999"
-    ports:
-    - 8200:8200
-    # network_mode: "host"
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: test
     volumes:
-    - ./configs/server2.hcl:/etc/vault.d/server.hcl:ro
-    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
-    - ./raft/server2:/raft:rw
-    - ./tls/vault2-key.pem:/tls/key.pem:ro
-    - ./tls/vault2-cert.pem:/tls/cert.pem:ro
-    - ./tls/vault-ca.pem:/tls/ca.pem:ro
-  server3:
-    container_name: server3
-    hostname: server3
-    image: tl-vault:latest
-#    entrypoint: /usr/bin/sleep
-#    command: "9999999"
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
-    - 8300:8200
-#     network_mode: "host"
-    volumes:
-    - ./configs/server3.hcl:/etc/vault.d/server.hcl:ro
-    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
-    - ./gpg:/opt/gpg:rw
-    - ./raft/server3:/raft:rw
-    - ./tls/vault3-key.pem:/tls/key.pem:ro
-    - ./tls/vault3-cert.pem:/tls/cert.pem:ro
-    - ./tls/vault-ca.pem:/tls/ca.pem:ro
+      - "5432:5432"
