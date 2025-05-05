@@ -1,25 +1,181 @@
 version: "3"
 services:
-  server1:
-    container_name: server1
-    hostname: server1
-    image: tl-vault:latest
+#  server1:
+#    container_name: server1
+#    hostname: server1
+#    image: tl-vault:latest
 #    entrypoint: /usr/bin/sleep
 #    command: "9999999"
 #     network_mode: "host"
-    volumes:
-    - ./configs/server1.hcl:/etc/vault.d/server.hcl:ro
-    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
-    - ./gpg:/opt/gpg:rw
-  server2:
-    container_name: server2
-    hostname: server2
-    image: tl-vault:latest
+#    volumes:
+#    - ./configs/server1.hcl:/etc/vault.d/server.hcl:ro
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./gpg:/opt/gpg:rw
+#  server2:
+#    container_name: server2
+#    hostname: server2
+#    image: tl-vault:latest
 #    entrypoint: /usr/bin/sleep
 #    command: "9999999"
-    ports:
-    - 8200:8200
+#    ports:
+#    - 8200:8200
     # network_mode: "host"
+#    volumes:
+#    - ./configs/server2.hcl:/etc/vault.d/server.hcl:ro
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+  vault1node1:
+    container_name: vault1node1
+    hostname: vault1node1
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
     volumes:
-    - ./configs/server2.hcl:/etc/vault.d/server.hcl:ro
     - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node1.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault1-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault1-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault1:/var/lib/vault:rw
+  vault1node2:
+    container_name: vault1node2
+    hostname: vault1node2
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node2.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault2-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault2-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault2:/var/lib/vault:rw
+  vault1node3:
+    container_name: vault1node3
+    hostname: vault1node3
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node3.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault3-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault3-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault3:/var/lib/vault:rw
+#  vault2node1:
+#    container_name: vault2node1
+#    hostname: vault2node1
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node1.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault4-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault4-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault4:/var/lib/vault:rw
+#  vault2node2:
+#    container_name: vault2node2
+#    hostname: vault2node2
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node2.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault5-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault5-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault5:/var/lib/vault:rw
+#  vault2node3:
+#    container_name: vault2node3
+#    hostname: vault2node3
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node3.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault6-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault6-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault6:/var/lib/vault:rw
+  vault1node1dr:
+    container_name: vault1node1dr
+    hostname: vault1node1dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node1dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault7-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault7-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault7:/var/lib/vault:rw
+  vault1node2dr:
+    container_name: vault1node2dr
+    hostname: vault1node2dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node2dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault8-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault8-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault8:/var/lib/vault:rw
+  vault1node3dr:
+    container_name: vault1node3dr
+    hostname: vault1node3dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault1node3dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault9-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault9-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault9:/var/lib/vault:rw
+#  vault2node1dr:
+#    container_name: vault2node1dr
+#    hostname: vault2node1dr
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node1dr.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault10-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault10-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault10:/var/lib/vault:rw
+#  vault2node2dr:
+#    container_name: vault2node2dr
+#    hostname: vault2node2dr
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node2dr.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault11-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault11-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault11:/var/lib/vault:rw
+#  vault2node3dr:
+#    container_name: vault2node3dr
+#    hostname: vault2node3dr
+#    image: tl-vault:latest
+#    environment:
+#      - VAULT_CAPATH=/etc/vault.d/ca.pem
+#    volumes:
+#    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+#    - ./configs/vault2node3dr.hcl:/etc/vault.d/server.hcl:ro
+#    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+#    - ./tls/vault12-cert.pem:/etc/vault.d/cert.pem:ro
+#    - ./tls/vault12-key.pem:/etc/vault.d/key.pem:ro
+#    - ./raft/vault12:/var/lib/vault:rw

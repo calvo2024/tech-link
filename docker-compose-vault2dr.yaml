@@ -1,0 +1,44 @@
+version: "3"
+services:
+  vault2node1dr:
+    container_name: vault2node1dr
+    hostname: vault2node1dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    env_file: vault2drtokenenv.ignore
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault2node1dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault10-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault10-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault10:/var/lib/vault:rw
+  vault2node2dr:
+    container_name: vault2node2dr
+    hostname: vault2node2dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    env_file: vault2drtokenenv.ignore
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault2node2dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault11-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault11-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault11:/var/lib/vault:rw
+  vault2node3dr:
+    container_name: vault2node3dr
+    hostname: vault2node3dr
+    image: tl-vault:latest
+    environment:
+      - VAULT_CAPATH=/etc/vault.d/ca.pem
+    env_file: vault2drtokenenv.ignore
+    volumes:
+    - ./configs/vault.hclic:/etc/vault.d/vault.hclic:ro
+    - ./configs/vault2node3dr.hcl:/etc/vault.d/server.hcl:ro
+    - ./tls/vault-ca.pem:/etc/vault.d/ca.pem:ro
+    - ./tls/vault12-cert.pem:/etc/vault.d/cert.pem:ro
+    - ./tls/vault12-key.pem:/etc/vault.d/key.pem:ro
+    - ./raft/vault12:/var/lib/vault:rw
