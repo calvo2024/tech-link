@@ -1,0 +1,11 @@
+*.hclic
+.DS_Store
+*.gpg
+*.asc
+*.txt
+*.pem
+*.csr
+*.key
+*.ignore
+*.db
+raft/
