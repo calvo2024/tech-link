@@ -14,7 +14,7 @@ case $ARCH in
         ;;
 esac
 
-podman build --build-arg ARCH=ARCH_ALIAS -t oss-vault image-oss-vault
+podman build --build-arg ARCH=$ARCH_ALIAS -t oss-vault image-oss-vault || exit 1
 
 cat pods.yaml.template | sed "s+__ENTER__PWD__HERE__+$PWD+g" > pods.yaml
 

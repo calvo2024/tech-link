@@ -1,11 +1,22 @@
 prepare yaml's and certs
 
-`./init.sh`
+```bash
+./init.sh
+```
 
 to start your cluster
 
-`podman kube play pods.yaml`
+```bash
+podman kube play pods.yaml
+```
 
 to stop your cluster
 
-`podman kube down pods.yaml`
+```bash
+podman kube down pods.yaml
+```
+
+to use vault
+```bash
+podman exec -it pod1-oss-vault bash
+```
