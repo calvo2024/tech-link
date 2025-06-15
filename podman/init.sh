@@ -16,7 +16,7 @@ esac
 
 podman build --build-arg ARCH=$ARCH_ALIAS -t oss-vault image-oss-vault || exit 1
 
-cat pods.yaml.template | sed "s+__ENTER__PWD__HERE__+$PWD+g" > pods.yaml
+# cat pods.yaml.template | sed "s+__ENTER__PWD__HERE__+$PWD+g" > pods.yaml
 
 openssl genrsa -out vault-ca.key 2048
 openssl rsa -in vault-ca.key -outform PEM -out vault-ca.key

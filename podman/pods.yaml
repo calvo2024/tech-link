@@ -14,7 +14,7 @@ spec:
   volumes:
   - name: pod1-dir
     hostPath:
-      path: __ENTER__PWD__HERE__/volumes/pod1
+      path: ./volumes/pod1
       type: Directory
 ---
 apiVersion: v1
@@ -32,7 +32,7 @@ spec:
   volumes:
   - name: pod2-dir
     hostPath:
-      path: __ENTER__PWD__HERE__/volumes/pod2
+      path: ./volumes/pod2
       type: Directory
 ---
 apiVersion: v1
@@ -50,5 +50,5 @@ spec:
   volumes:
   - name: pod3-dir
     hostPath:
-      path: __ENTER__PWD__HERE__/volumes/pod3
+      path: ./volumes/pod3
       type: Directory
