@@ -9,4 +9,3 @@ mkdir -p /etc/vault.d
 ENV VAULT_ADDR=https://localhost:8200
 ENV VAULT_CAPATH=/opt/vault/tls/ca.pem
 ENTRYPOINT ["vault", "server", "--config=/opt/vault/config.hcl"]
-# root@pod1:/# vault server --config=/opt/vault/config.hcl

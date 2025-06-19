@@ -9,6 +9,9 @@ case $ARCH in
     aarch64)
         ARCH_ALIAS=arm64
         ;;
+    arm64)
+        ARCH_ALIAS=arm64
+        ;;
     *)
         echo "Unsupported architecture: $ARCH" && exit 1
         ;;
@@ -16,7 +19,7 @@ esac
 
 podman build --build-arg ARCH=$ARCH_ALIAS -t oss-vault image-oss-vault || exit 1
 
-# cat pods.yaml.template | sed "s+__ENTER__PWD__HERE__+$PWD+g" > pods.yaml
+cat pods.yaml.template | sed "s+__ENTER__PWD__HERE__+$PWD+g" > pods.yaml
 
 openssl genrsa -out vault-ca.key 2048
 openssl rsa -in vault-ca.key -outform PEM -out vault-ca.key
@@ -38,6 +41,15 @@ f 2 "subjectAltName = DNS:localhost,DNS:localhost.localdomain,DNS:pod2"
 f 3 "subjectAltName = DNS:localhost,DNS:localhost.localdomain,DNS:pod3"
 
 rm *.csr
+
+h() {
+   mkdir -p volumes/pod${1}/tls
+   mkdir -p volumes/pod${1}/data
+}
+
+h 1
+h 2
+h 3
 
 g() {
    mv vault${1}-key.pem volumes/pod${1}/tls/key.pem
