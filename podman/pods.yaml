@@ -8,13 +8,13 @@ spec:
   - name: oss-vault
     image: oss-vault
     volumeMounts:
-    - mountPath: /opt/vault
+    - mountPath: /opt/vault:z
       name: pod1-dir
       readOnly: false
   volumes:
   - name: pod1-dir
     hostPath:
-      path: /Users/ivan.calvorevelo/root/training/data/pod1
+      path: ./volumes/pod1
       type: Directory
 ---
 apiVersion: v1
@@ -25,6 +25,15 @@ spec:
   containers:
   - name: oss-vault
     image: oss-vault
+    volumeMounts:
+    - mountPath: /opt/vault
+      name: pod2-dir
+      readOnly: false
+  volumes:
+  - name: pod2-dir
+    hostPath:
+      path: ./volumes/pod2
+      type: Directory
 ---
 apiVersion: v1
 kind: Pod
@@ -34,3 +43,12 @@ spec:
   containers:
   - name: oss-vault
     image: oss-vault
+    volumeMounts:
+    - mountPath: /opt/vault
+      name: pod3-dir
+      readOnly: false
+  volumes:
+  - name: pod3-dir
+    hostPath:
+      path: ./volumes/pod3
+      type: Directory
