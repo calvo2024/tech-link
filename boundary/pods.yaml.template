@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: egress
+spec:
+  containers:
+  - name: worker
+    image: tl-boundary
+    volumeMounts:
+    - mountPath: /home/ubuntu/boundary/pki-worker.hcl:z
+      name: config
+      readOnly: false
+  - name: target
+    image: tl-sshd
+  volumes:
+  - name: config
+    hostPath:
+      path: __ENTER__PWD__HERE__/configs/egress.hcl
+      type: File
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: intermediate
+spec:
+  containers:
+  - name: worker
+    image: tl-boundary
+    volumeMounts:
+    - mountPath: /home/ubuntu/boundary/pki-worker.hcl:z
+      name: config
+      readOnly: false
+  - name: target
+    image: tl-sshd
+  volumes:
+  - name: config
+    hostPath:
+      path: __ENTER__PWD__HERE__/configs/intermediate.hcl
+      type: File
