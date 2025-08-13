@@ -323,7 +323,9 @@ server:
   # deployment to single node services such as Minikube
   # This should be either a multi-line string or YAML matching the PodSpec's affinity field.
 
-  affinity: {}
+  affinity: {
+    
+  }
 #  affinity: |
 #    podAntiAffinity:
 #      requiredDuringSchedulingIgnoredDuringExecution:
