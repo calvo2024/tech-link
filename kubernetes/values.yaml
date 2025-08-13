@@ -609,7 +609,7 @@ server:
       # Enables Raft integrated storage
       enabled: true
       # Set the Node Raft ID to the name of the pod
-      setNodeId: false
+      setNodeId: true
 
       # Note: Configuration files are stored in ConfigMaps so sensitive data
       # such as passwords should be either mounted through extraSecretEnvironmentVars
@@ -631,6 +631,15 @@ server:
 
         storage "raft" {
           path = "/vault/data"
+          retry_join {
+            leader_api_addr = "http://vault-0:8200"
+          }
+          retry_join {
+            leader_api_addr = "http://vault-1:8200"
+          }
+          retry_join {
+            leader_api_addr = "http://vault-2:8200"
+          }
         }
 
         service_registration "kubernetes" {}
