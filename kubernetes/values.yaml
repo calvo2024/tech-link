@@ -1,12 +1,7 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
-# Available parameters and their default values for the Vault chart.
-
 global:
   # enabled is the master enabled switch. Setting this to true or false
   # will enable or disable all the components within this chart by default.
-  enabled: true
+  enabled: false
 
   # The namespace to deploy to. Defaults to the `helm` installation namespace.
   namespace: ""
@@ -44,20 +39,8 @@ global:
     prometheusOperator: false
 
 injector:
-  # True if you want to enable vault agent injection.
-  # @default: global.enabled
   enabled: "false"
-
-# secrets-store-csi-driver-provider-vault
 csi:
-  # True if you want to install a secrets-store-csi-driver-provider-vault daemonset.
-  #
-  # Requires installing the secrets-store-csi-driver separately, see:
-  # https://github.com/kubernetes-sigs/secrets-store-csi-driver#install-the-secrets-store-csi-driver
-  #
-  # With the driver and provider installed, you can mount Vault secrets into volumes
-  # similar to the Vault Agent injector, and you can also sync those secrets into
-  # Kubernetes secrets.
   enabled: false
 
 server:
@@ -478,6 +461,9 @@ server:
     # to the service.
     annotations: {}
 
+
+
+
   # This configures the Vault Statefulset to create a PVC for data
   # storage when using the file or raft backend storage engines.
   # See https://developer.hashicorp.com/vault/docs/configuration/storage to know more
@@ -497,6 +483,8 @@ server:
     # Labels to apply to the PVC
     labels: {}
 
+
+
   # Persistent Volume Claim (PVC) retention policy
   # ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention
   # Example:
@@ -511,7 +499,7 @@ server:
   # /vault/audit
   # See https://developer.hashicorp.com/vault/docs/audit to know more
   auditStorage:
-    enabled: false
+    enabled: true
     # Size of the PVC created
     size: 10Gi
     # Location where the PVC will be mounted.
@@ -526,62 +514,10 @@ server:
     # Labels to apply to the PVC
     labels: {}
 
-  # Run Vault in "dev" mode. This requires no further setup, no state management,
-  # and no initialization. This is useful for experimenting with Vault without
-  # needing to unseal, store keys, et. al. All data is lost on restart - do not
-  # use dev mode for anything other than experimenting.
-  # See https://developer.hashicorp.com/vault/docs/concepts/dev-server to know more
   dev:
     enabled: false
-
-
-  # Run Vault in "standalone" mode. This is the default mode that will deploy if
-  # no arguments are given to helm. This requires a PVC for data storage to use
-  # the "file" backend.  This mode is not highly available and should not be scaled
-  # past a single replica.
   standalone:
-    enabled: "false"
-
-    # config is a raw string of default configuration when using a Stateful
-    # deployment. Default is to use a PersistentVolumeClaim mounted at /vault/data
-    # and store data there. This is only used when using a Replica count of 1, and
-    # using a stateful set. Supported formats are HCL and JSON.
-
-    # Note: Configuration files are stored in ConfigMaps so sensitive data
-    # such as passwords should be either mounted through extraSecretEnvironmentVars
-    # or through a Kube secret. For more information see:
-    # https://developer.hashicorp.com/vault/docs/platform/k8s/helm/run#protecting-sensitive-vault-configurations
-    config: |-
-      ui = true
-
-      listener "tcp" {
-        tls_disable = 1
-        address = "[::]:8200"
-        cluster_address = "[::]:8201"
-        # Enable unauthenticated metrics access (necessary for Prometheus Operator)
-        #telemetry {
-        #  unauthenticated_metrics_access = "true"
-        #}
-      }
-      storage "file" {
-        path = "/vault/data"
-      }
-
-      # Example configuration for using auto-unseal, using Google Cloud KMS. The
-      # GKMS keys must already exist, and the cluster must have a service account
-      # that is authorized to access GCP KMS.
-      #seal "gcpckms" {
-      #   project     = "vault-helm-dev"
-      #   region      = "global"
-      #   key_ring    = "vault-helm-unseal-kr"
-      #   crypto_key  = "vault-helm-unseal-key"
-      #}
-
-      # Example configuration for enabling Prometheus metrics in your config.
-      #telemetry {
-      #  prometheus_retention_time = "30s"
-      #  disable_hostname = true
-      #}
+    enabled: false
 
   # Run Vault in "HA" mode. There are no storage requirements unless the audit log
   # persistence is required.  In HA mode Vault will configure itself to use Consul
