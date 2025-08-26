@@ -488,6 +488,8 @@ server:
       config: |
         ui = true
 
+        license_path = "/vault/license/license.hclic"
+
         listener "tcp" {
           tls_cert_file = "/etc/certs/tls.crt"
           tls_key_file  = "/etc/certs/tls.key"
