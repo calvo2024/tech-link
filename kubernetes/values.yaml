@@ -31,7 +31,7 @@ server:
   enabled: "true"
 
   enterpriseLicense:
-    secretName: ""
+    secretName: "license"
     secretKey: "license"
 
   image:
