@@ -489,8 +489,8 @@ server:
         ui = true
 
         listener "tcp" {
-          tls_cert_file = "/etc/certs/vault1-cert.pem"
-          tls_key_file  = "/etc/certs/vault1-key.pem"
+          tls_cert_file = "/etc/certs/tls.crt"
+          tls_key_file  = "/etc/certs/tls.key"
           address = "[::]:8200"
           cluster_address = "[::]:8201"
           # Enable unauthenticated metrics access (necessary for Prometheus Operator)
