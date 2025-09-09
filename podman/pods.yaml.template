@@ -1,0 +1,54 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+spec:
+  containers:
+  - name: oss-vault
+    image: oss-vault
+    volumeMounts:
+    - mountPath: /opt/vault:z
+      name: pod1-dir
+      readOnly: false
+  volumes:
+  - name: pod1-dir
+    hostPath:
+      path: __ENTER__PWD__HERE__/volumes/pod1
+      type: Directory
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod2
+spec:
+  containers:
+  - name: oss-vault
+    image: oss-vault
+    volumeMounts:
+    - mountPath: /opt/vault:z
+      name: pod2-dir
+      readOnly: false
+  volumes:
+  - name: pod2-dir
+    hostPath:
+      path: __ENTER__PWD__HERE__/volumes/pod2
+      type: Directory
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod3
+spec:
+  containers:
+  - name: oss-vault
+    image: oss-vault
+    volumeMounts:
+    - mountPath: /opt/vault:z
+      name: pod3-dir
+      readOnly: false
+  volumes:
+  - name: pod3-dir
+    hostPath:
+      path: __ENTER__PWD__HERE__/volumes/pod3
+      type: Directory
